@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.service.GetMessage;
 import com.example.demo.service.GetMessageCode;
 import com.example.demo.util.Code;
 import com.example.demo.util.ImageCode;
@@ -30,12 +31,13 @@ import java.io.OutputStream;
 public class SendSms {
 
     @Autowired
-    private GetMessageCode getMessageCode;
+    private GetMessage getMessage;
 
     @PostMapping()
-    public void getImageCode(String phone) throws Exception {
+    public String  getImageCode(String phone) throws Exception {
 
-        getMessageCode.getCode(phone);
+        final String code = getMessage.getCode(phone);
+        return code;
 
     }
 }

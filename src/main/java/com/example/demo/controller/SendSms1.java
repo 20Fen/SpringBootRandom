@@ -51,8 +51,8 @@ public class SendSms1 {
     }
 
     @RequestMapping("/intcode")
-    public int code() throws IOException {
-        int randomCode = Code.randomCode();
+    public String code() throws IOException {
+        String randomCode = Code.randomCode();
         return randomCode;
     }
 }
