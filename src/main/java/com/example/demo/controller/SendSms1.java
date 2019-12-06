@@ -22,8 +22,8 @@ import java.io.OutputStream;
  */
 @Log4j2
 @RestController
-@RequestMapping("/get")
-public class getCode {
+@RequestMapping("/sendSms")
+public class SendSms1 {
 
     @RequestMapping("/imagecode")
     public void getImageCode(HttpServletResponse response, HttpServletRequest request) throws IOException {

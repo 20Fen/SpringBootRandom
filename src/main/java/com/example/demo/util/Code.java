@@ -24,14 +24,14 @@ public class Code {
        return sBuffer;
     }
 
-    public static int randomCode() {
+    public static String randomCode() {
         System.out.println(Math.random());
         //        生成随机的六位数字
-        Integer value = (int) (((Math.random() + 1) * 9) * 100000);
+        String value = (int) (((Math.random() + 1) * 9) * 100000)+"";
         System.out.println(value);
         //        生成随机的六位数字
-        Integer u = Integer.valueOf((int) (((Math.random() + 1) * 9) * 100000));
-        System.out.println(u);
+//        String u = Integer.valueOf((int) (((Math.random() + 1) * 9) * 100000))+"";
+//        System.out.println(u);
         return value;
     }
 }
