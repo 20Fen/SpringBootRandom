@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.util.Code;
+import com.example.demo.util.CodeUtil;
 import com.example.demo.util.ImageCode;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,13 +46,13 @@ public class SendSms1 {
     @RequestMapping("/code")
     public StringBuffer getCode() throws IOException {
 
-        StringBuffer stringBuffer = Code.drawRandomText();
+        StringBuffer stringBuffer = CodeUtil.drawRandomText();
         return stringBuffer;
     }
 
     @RequestMapping("/intcode")
     public String code() throws IOException {
-        String randomCode = Code.randomCode();
+        String randomCode = CodeUtil.randomCode();
         return randomCode;
     }
 }

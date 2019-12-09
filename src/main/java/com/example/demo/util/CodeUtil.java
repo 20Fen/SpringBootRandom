@@ -1,5 +1,7 @@
 package com.example.demo.util;
 
+import org.springframework.stereotype.Component;
+
 import java.util.Random;
 
 /**
@@ -9,7 +11,8 @@ import java.util.Random;
  * @return
  * @date 2019/10/14 10:38
  */
-public class Code {
+@Component
+public class CodeUtil {
     public static StringBuffer drawRandomText() {
         StringBuffer sBuffer = new StringBuffer();
         //数字和字母的组合
