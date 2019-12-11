@@ -43,14 +43,14 @@ public class SendSms1 {
 
     }
     @RequestMapping("/code")
-    public StringBuffer getCode() throws IOException {
+    public StringBuffer getCode() {
 
         StringBuffer stringBuffer = CodeUtil.drawRandomText();
         return stringBuffer;
     }
 
     @RequestMapping("/intcode")
-    public String code() throws IOException {
+    public String code() {
         String randomCode = CodeUtil.randomCode();
         return randomCode;
     }
