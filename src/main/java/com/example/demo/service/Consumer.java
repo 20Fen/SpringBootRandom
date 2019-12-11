@@ -18,6 +18,7 @@ import java.util.Map;
 @Component
 public class Consumer {
 
+
     @Autowired
     private JuUtil juUtil;
 

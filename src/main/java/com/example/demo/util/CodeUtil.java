@@ -30,10 +30,10 @@ public class CodeUtil {
     public static String randomCode() {
         System.out.println(Math.random());
         //        生成随机的六位数字
-        String value = (int) (((Math.random() + 1) * 9) * 100000)+"";
+        String value = (int) (((Math.random() + 1) * 9) * 10000)+"";
         System.out.println(value);
         //        生成随机的六位数字
-//        String u = Integer.valueOf((int) (((Math.random() + 1) * 9) * 100000))+"";
+//        String u = Integer.valueOf((int) (((Math.random() + 1) * 9) * 10000))+"";
 //        System.out.println(u);
         return value;
     }
