@@ -31,10 +31,10 @@ public class QueueSendSms {
     private String tplId;
 
     @PostMapping("/code")
-    public void getCode(String phone) {
+    public void getCode(String phone) throws Exception {
 
         if(StringUtils.isEmpty(phone)){
-            return;
+            throw new Exception("手机号不能为空");
         }
 
         Map map = new HashMap();//请求参数
