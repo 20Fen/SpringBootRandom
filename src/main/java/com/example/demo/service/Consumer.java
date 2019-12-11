@@ -21,17 +21,29 @@ public class Consumer {
     @Value(value = "${url}")
     private String url;
 
-    @JmsListener(destination = "Y")
-    public void readMap(Map map){
-        System.out.println(map);
+//    @JmsListener(destination = "q")
+//    public void readMap(Map map){
+//        System.out.println(map);
+//    }
+
+    @JmsListener(destination = "q")
+    public void sendSmsQ(Map<String,String> map) {
+        sendSms(map);
+    }
+    @JmsListener(destination = "t")
+    public void sendSmsT1(Map<String,String> map){
+        sendSms(map);
+    }
+    @JmsListener(destination = "t")
+    public void sendSmsT2(Map<String,String> map){
+        sendSms(map);
     }
 
-    @JmsListener(destination = "Y")
     public void sendSms(Map<String,String> map){
-                map.get("mobile");
-                map.get("tpl_id");
-                map.get("tpl_value");
-                map.get("key");
+        map.get("mobile");
+        map.get("tpl_id");
+        map.get("tpl_value");
+        map.get("key");
 
         String post = null;
         try {
