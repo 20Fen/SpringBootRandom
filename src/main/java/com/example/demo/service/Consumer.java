@@ -32,7 +32,7 @@ public class Consumer {
     }
     @JmsListener(destination = "t")
     public void sendSmsT1(Map<String,String> map){
-        sendSms(map);
+        System.out.println(map);
     }
     @JmsListener(destination = "t")
     public void sendSmsT2(Map<String,String> map){
