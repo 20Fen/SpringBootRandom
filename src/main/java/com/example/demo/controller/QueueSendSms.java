@@ -1,26 +1,25 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.Phones;
 import com.example.demo.util.CodeUtil;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.jms.annotation.JmsListener;
 import org.springframework.jms.core.JmsMessagingTemplate;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
- * Description:
- *
- * @author yangfl
- * @date 2019年12月09日 14:36
- * Version 1.0
+ * Description:发送短信
  */
 @RestController
 @RequestMapping("/send")
+@Api(value = "发送短信")
 public class QueueSendSms {
 
     @Autowired
@@ -33,17 +32,19 @@ public class QueueSendSms {
     private String tplId;
 
     @RequestMapping("/code")
-    public void getCode(String phone) throws IOException {
+    public void getCode(@RequestBody Phones phone) {
 
         Map map = new HashMap();//请求参数
-        //生产验证码
-        String code = CodeUtil.randomCode();
-        String result =null;
-        map.put("mobile",phone);//接受短信的用户手机号码
-        map.put("tpl_id",tplId);//您申请的短信模板ID，根据实际情况修改
-        map.put("tpl_value","#code#="+code);//验证码
-        map.put("key",appKey);//应用APPKEY(应用详细页查询)
-        jmsMessagingTemplate.convertAndSend("Y",map);
-
+        List<String> phone1 = phone.getPhones();
+        for (String s : phone1) {
+            //生产验证码
+            String code = CodeUtil.randomCode();
+            String result =null;
+            map.put("mobile",s);//接受短信的用户手机号码
+            map.put("tpl_id",tplId);//您申请的短信模板ID，根据实际情况修改
+            map.put("tpl_value","#code#="+code);//验证码
+            map.put("key",appKey);//应用APPKEY(应用详细页查询)
+            jmsMessagingTemplate.convertAndSend("Y",map);
+        }
     }
 }

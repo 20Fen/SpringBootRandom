@@ -9,11 +9,7 @@ import org.springframework.stereotype.Component;
 import java.util.Map;
 
 /**
- * Description:
- *
- * @author yangfl
- * @date 2019年12月09日 14:42
- * Version 1.0
+ * Description: 消费
  */
 @Component
 public class Consumer {
