@@ -48,7 +48,7 @@ public class Producter {
         jmsMessagingTemplate.convertAndSend(topic,map);
     }
 
-    public void getQueue(String phone) throws Exception {
+    public String getQueue(String phone) throws Exception {
 
         if(StringUtils.isEmpty(phone)){
             throw new Exception("手机号不能为空");
@@ -64,6 +64,7 @@ public class Producter {
         map.put("key",appKey);//应用APPKEY(应用详细页查询)
         Destination queue = new ActiveMQQueue("q");
         jmsMessagingTemplate.convertAndSend(queue,map);
+        return code;
     }
 
 }
