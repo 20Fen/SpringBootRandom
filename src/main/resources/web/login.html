@@ -94,19 +94,18 @@
             $.ajax({
                 url : " http://localhost:9898/send/queue",  //发送请求
                 type : "post",
-                crossDomain: true,
                 data : {
                     "phone" : phone
-                },
-                success : function(data) {
-                    if(data){
-                        alert(data.toString());
-                        sms = data;
-                    }else{
-                        alert("登录失败！");
-                    }
-
                 }
+                // success : function(data) {
+                //     if(data){
+                //         alert(data.toString());
+                //         sms = data;
+                //     }else{
+                //         alert("登录失败！");
+                //     }
+                //
+                // }
             });
         } else  {
                 alert("请输入手机号");
@@ -117,19 +116,28 @@
         }
     });
     $("#lo").click(function() {
+        var phone = $("#phone").val();
         var code = $("#code").val();
-        if (code == "") {
-            alert("请输入验证码");
-
+        if (code != "") {
+            $.ajax({
+                url : " http://localhost:9898/send/cheak",  //发送请求
+                type : "post",
+                data : {
+                    "phone" : phone,
+                    "code" : code
+                },
+                success : function(data) {
+                    if(data == "0"){
+                        alert(data.toString());
+                        window.location.href = "success.html";
+                    }else{
+                        alert("登录失败！");
+                    }
+                }
+            });
         } else {
-            if (sms == code) {
-                window.location.href = "success.html";
-            } else {
-                alert("验证码错误");
-            }
-            ;
+            alert("请输入验证码");
         }
-        ;
     });
 </script>
 </html>
