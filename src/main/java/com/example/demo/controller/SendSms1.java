@@ -30,11 +30,11 @@ public class SendSms1 {
         int width = 200;
         int height = 69;
         BufferedImage verifyImg = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-//生成对应宽高的初始图片
+        //生成对应宽高的初始图片
         String randomText = ImageCode.drawRandomText(width, height, verifyImg);
-//单独的一个类方法，出于代码复用考虑，进行了封装。
-//功能是生成验证码字符并加上噪点，干扰线，返回值为验证码字符
-//        request.getSession().setAttribute("verifyCode", randomText);
+        //单独的一个类方法，出于代码复用考虑，进行了封装。
+        //功能是生成验证码字符并加上噪点，干扰线，返回值为验证码字符
+        //request.getSession().setAttribute("verifyCode", randomText);
         response.setContentType("image/png");//必须设置响应内容类型为图片，否则前台不识别
         OutputStream os = response.getOutputStream(); //获取文件输出流
         ImageIO.write(verifyImg, "png", os);//输出图片流
