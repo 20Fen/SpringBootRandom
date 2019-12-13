@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.core.JmsMessagingTemplate;
 import org.springframework.util.StringUtils;
-import redis.clients.jedis.Jedis;
 
 import javax.jms.Destination;
 import java.util.HashMap;
