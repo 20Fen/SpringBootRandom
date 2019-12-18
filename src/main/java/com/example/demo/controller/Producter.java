@@ -71,11 +71,17 @@ public class Producter {
             throw new Exception("参数不能为空");
         }
 
-        Object code = JedisUtil.getValue(cheak.getPhone());
-        if (code.equals(cheak.getCode())) {
-            return "0";
+        Boolean exists = JedisUtil.exists(cheak.getPhone());
+        if(!exists){
+            throw new Exception("手机号不一致，请确认手机号是否是原手机号");
         }
-        throw new Exception("验证码不一致，请确认验证码是否正确");
+        Object code = JedisUtil.getValue(cheak.getPhone());
+        if (!code.equals(cheak.getCode())) {
+            throw new Exception("验证码不一致，请确认验证码是否正确");
+        }
+        return "0";
     }
+
+
 }
 
