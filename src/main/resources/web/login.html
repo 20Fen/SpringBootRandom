@@ -147,7 +147,7 @@
                 error:function(error){
                     console.log(error,"ssssssssssssss")
                     if(error.status === 500 ){
-                        alert("手机号或验证码不正确，请确认后在输入");
+                        alert(error.responseJSON.message );
                         return false;
                     }
                 }
