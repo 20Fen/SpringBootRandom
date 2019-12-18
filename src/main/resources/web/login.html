@@ -94,19 +94,26 @@
             $.ajax({
                 url : " http://localhost:9898/send/queue",  //发送请求
                 type : "post",
-                data : {
-                    "phone" : phone
+                contentType:"application/json",
+                dataType:'json',
+                data:`{\"phone\":${phone}}`,
+
+                success : function(data) {
+                    console
+                },
+
+                error:function(error){
+                    console.log(error,"ssssssssssssss")
+                    if(error.status === 500 ){
+                        alert("手机号不正确");
+                        window.clearInterval(InterValObj);//停止计时器
+                        $("#btn").removeAttr("disabled");//启用按钮
+                        $("#btn").val("发送验证码");
+                        return false;
+                    }
                 }
-                // success : function(data) {
-                //     if(data){
-                //         alert(data.toString());
-                //         sms = data;
-                //     }else{
-                //         alert("登录失败！");
-                //     }
-                //
-                // }
-            });
+            },"json");
+            $.ajaxSettings.async = true;
         } else  {
                 alert("请输入手机号");
                 window.clearInterval(InterValObj);//停止计时器
@@ -122,16 +129,26 @@
             $.ajax({
                 url : " http://localhost:9898/send/cheak",  //发送请求
                 type : "post",
-                data : {
-                    "phone" : phone,
-                    "code" : code
-                },
+                contentType:"application/json",
+                dataType:'json',
+                data : `{
+                    \"phone\" : ${phone},
+                    \"code\" : ${code}
+                }`,
                 success : function(data) {
                     if(data == "0"){
-                        alert(data.toString());
+                        console.log(data)
                         window.location.href = "success.html";
                     }else{
                         window.location.href = "fail.html";
+                    }
+                },
+
+                error:function(error){
+                    console.log(error,"ssssssssssssss")
+                    if(error.status === 500 ){
+                        alert("手机号或验证码不正确，请确认后在输入");
+                        return false;
                     }
                 }
             });

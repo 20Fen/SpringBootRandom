@@ -10,11 +10,7 @@ import java.net.URLEncoder;
 import java.util.Map;
 
 /**
- * Description:
- *
- * @author yangfl
- * @date 2019年12月09日 14:48
- * Version 1.0
+ * Description: 聚合短息
  */
 @Component
 public class JuUtil {

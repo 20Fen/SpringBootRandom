@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.exception.CustomException;
 import com.example.demo.model.Cheak;
 import com.example.demo.util.CodeUtil;
 import com.example.demo.util.JedisUtil;
@@ -29,10 +30,10 @@ public class Producter {
     @Value(value = "${tpl_id}")
     private String tplId;
 
-    public void getTopic(String phone) throws Exception {
+    public void getTopic(String phone) throws CustomException {
 
         if (StringUtils.isEmpty(phone)) {
-            throw new Exception("手机号不能为空");
+            throw new CustomException("手机号不能为空");
         }
 
         Map map = new HashMap();//请求参数
@@ -47,10 +48,10 @@ public class Producter {
         jmsMessagingTemplate.convertAndSend(topic, map);
     }
 
-    public void getQueue(String phone) throws Exception {
+    public void getQueue(String phone) throws CustomException {
 
         if (StringUtils.isEmpty(phone)) {
-            throw new Exception("手机号不能为空");
+            throw new CustomException("手机号不能为空");
         }
 
         Map map = new HashMap();//请求参数
@@ -63,21 +64,22 @@ public class Producter {
         map.put("key", appKey);//应用APPKEY(应用详细页查询)
         Destination queue = new ActiveMQQueue("q");
         jmsMessagingTemplate.convertAndSend(queue, map);
+
     }
 
-    public String cheak(Cheak cheak) throws Exception {
+    public String cheak(Cheak cheak) throws CustomException {
 
         if (null == cheak) {
-            throw new Exception("参数不能为空");
+            throw new CustomException("参数不能为空");
         }
 
         Boolean exists = JedisUtil.exists(cheak.getPhone());
         if(!exists){
-            throw new Exception("手机号不一致，请确认手机号是否是原手机号");
+            throw new CustomException("手机号不一致，请确认手机号是否是原手机号");
         }
         Object code = JedisUtil.getValue(cheak.getPhone());
         if (!code.equals(cheak.getCode())) {
-            throw new Exception("验证码不一致，请确认验证码是否正确");
+            throw new CustomException("验证码不一致，请确认验证码是否正确");
         }
         return "0";
     }
